@@ -1,12 +1,10 @@
-
-
 import React from 'react';
 import { View, Modal, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 
 import PropTypes from 'prop-types';
 
-import styles from './style';
 import BaseComponent from './BaseComponent';
+import styles from './style';
 
 let componentIndex = 0;
 
@@ -62,8 +60,10 @@ export default class ModalPicker extends BaseComponent {
     this.setState({ cancelText: this.props.cancelText });
   }
 
-  componentDidUpdate() {
-    this.setState({ data: this.props.data });
+  componentDidUpdate(prevProps) {
+    if (this.props.data && prevProps.data !== this.props.data) {
+      this.setState({ data: this.props.data });
+    }
   }
 
   onChange(item) {
